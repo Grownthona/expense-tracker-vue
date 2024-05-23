@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 
 use App\Models\User;
 class UserController extends Controller
@@ -49,7 +51,9 @@ class UserController extends Controller
             return response()->json(['message' => "Password doesn't match!"], 500);
         }
         //session()->put('id', $finduser->id);
-        Session::set('id', $finduser->id);
+        //Session::set('id', $finduser->id);
+        session('id', $finduser->id);
+        //Session::set('id', $finduser->id);
         return response()->json([ 'message' => "SignIn Successfull!",'id' => $finduser->id], 200);
     }
 }

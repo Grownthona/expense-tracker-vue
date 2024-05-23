@@ -6,6 +6,7 @@ import SignIn from '@/components/User/SignIn.vue';
 import Dashboard from '@/components/Home/Dashboard.vue';
 import Budget from '@/components/Budget/Budget.vue';
 import AddBudget from '@/components/Budget/AddBudget.vue';
+import Expense from '@/components/Expense/Expense.vue';
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/addbudget',
     name: 'AddBudget',
     component: AddBudget,
+  },
+  {
+    path: '/expense',
+    name: 'Expense',
+    component: Expense,
   },
 ]
 

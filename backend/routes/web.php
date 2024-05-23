@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\ExpenseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +27,18 @@ Route::get('/', function () {
 Route::post('/signup', [UserController::class, 'signup']);
 Route::post('/login', [UserController::class, 'login']);
 
-Route::post('/addBudget', [BudgetController::class, 'addBudget']);
+Route::post('/addBudget/{id}/{monthtotal}', [BudgetController::class, 'addBudget']);
 Route::get('/category', [BudgetController::class, 'category']);
-Route::get('/budget', [BudgetController::class, 'budget']);
+Route::get('/budget/{id}', [BudgetController::class, 'budget']);
+
+Route::get('/monthlybudget', [BudgetController::class, 'monthlyBudget']);
+
+Route::post('/updatebudget/{id}', [BudgetController::class, 'updateBudget']);
+
+Route::post('/addexpense/{id}/{budget}', [ExpenseController::class, 'addexpense']);
+Route::get('/expense/{id}', [ExpenseController::class, 'expense']);
+
+
+
 
 
