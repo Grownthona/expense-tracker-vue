@@ -36,6 +36,9 @@ Route::get('/monthlybudget', [BudgetController::class, 'monthlyBudget']);
 Route::post('/updatebudget/{id}', [BudgetController::class, 'updateBudget']);
 
 Route::post('/addexpense/{id}/{budget}', [ExpenseController::class, 'addexpense']);
+
+
+Route::get('/expensecategory/{id}', [ExpenseController::class, 'expenseCategory']);
 Route::get('/expense/{id}', [ExpenseController::class, 'expense']);
 
 

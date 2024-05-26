@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Budget;
 use App\Models\Category;
 use App\Models\Expense;
+use App\Models\User;
 
 class ExpenseController extends Controller
 {
@@ -35,7 +36,32 @@ class ExpenseController extends Controller
             response()->json([ 'message' => "Expense couldn't been added!"], 404);
         }
     }
+    public function expenseCategory($id){
+        //$findUserBudget = User :: with('budget')->get();
+        $findUserBudget = User :: find($id)->budget;
+        
+        if(!$findUserBudget->isEmpty()){
+            return response()->json($findUserBudget);
+        }else{
+            return response()->json(["message" => "Not Found!"]);
+        }
+
+        /*$budgets = [];
+        for ($i = 0; $i < count($findUserBudget); $i++) {
+            if (isset($findUserBudget[$i]['budget'])) {
+                $budgets[] = $findUserBudget[$i]['budget'];
+            }
+        }*/
+
+        /*$category = [];
+        foreach($findUserBudget as $budget){
+            $category [] = $budget->category;
+        }
+
+        return response()->json($category);*/
+    }
     public function expense(Request $request,$id){
+            
             $expense = Expense :: where('user_id',$id)->get();
             if($expense){
                 return response()->json($expense,200);

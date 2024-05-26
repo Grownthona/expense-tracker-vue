@@ -9,8 +9,8 @@
                         <div>
                             <label for="category">Category</label>
                             <select name="category" v-model="formValues.category" >
-                                <option v-for="(data,index) in tempcategory" :key="index" :value="data.name">
-                                    {{ data.name}}
+                                <option v-for="(data,index) in tempcategory" :key="index" :value="data.category">
+                                    {{ data.category}}
                                 </option>
                             </select>
                         </div>
@@ -62,14 +62,15 @@
                 description : '',
                 payment : ''
             },
-            tempcategory : {},
+            tempcategory : [],
             budget:{}
         }
    },
    methods:{
     getData(){
             //this.formValues.user_id = window.localStorage.getItem('id'); 
-            axios.get('http://127.0.0.1:8000/category')
+            const userID = parseInt(window.localStorage.getItem('id'));
+            axios.get(`http://127.0.0.1:8000/expensecategory/${userID}`)
             .then((response) => this.tempcategory=response.data)
             .catch((error) => console.log(error));
         },
